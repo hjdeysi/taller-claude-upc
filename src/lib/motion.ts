@@ -85,11 +85,10 @@ export const staggerParent = (stagger: number = STAGGER.words): Variants => ({
 });
 
 export const staggerChildSlide: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: transitionEntrance,
   },
 };

@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import upcLogo from "../../public/upc-logo.png";
 import {
   staggerParent,
   staggerChildSlide,
@@ -42,7 +43,7 @@ export function Hero() {
               Universidad Peruana de Ciencias Aplicadas
             </span>
             <Image
-              src="/upc-logo.png"
+              src={upcLogo}
               alt="UPC"
               width={28}
               height={28}
