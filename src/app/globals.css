@@ -260,6 +260,19 @@ h1, h2, h3 {
   color: var(--color-body-strong);
 }
 
+/* Bracketed placeholder pill — used inside prompt blocks to mark
+ * "fill this in" zones like [tu negocio] or [PEGA AQUÍ: ...]. The
+ * dashed coral-tinted border signals "replace me" without being loud. */
+.placeholder-pill {
+  display: inline;
+  padding: 0 0.4em;
+  border: 1px dashed var(--color-primary-disabled);
+  border-radius: var(--radius-xs);
+  background: var(--color-canvas);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
 /* Callout — coral side-rule + soft tonal background.
  * NOT a coral full-bleed (that's reserved for callout-card-coral).
  * Use for asides that need to read as separate from the main flow

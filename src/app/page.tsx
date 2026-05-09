@@ -7,6 +7,7 @@ import { Bienvenida } from "@/components/Bienvenida";
 import { LaBase } from "@/components/LaBase";
 import { Ecosistema } from "@/components/Ecosistema";
 import { Skills } from "@/components/Skills";
+import { Demos } from "@/components/Demos";
 import { SECTIONS } from "@/lib/sections";
 
 // Map section id → content component. Sections without a mapping
@@ -16,6 +17,7 @@ const CONTENT_BLOCKS: Record<string, ComponentType> = {
   "base-claude-ai": LaBase,
   ecosistema: Ecosistema,
   skills: Skills,
+  demos: Demos,
 };
 
 export default function Page() {
