@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "skills": {
+    "design-taste-frontend": {
+      "source": "leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "d823593e24d7493ab740db8f082cbe3b148ed29af9e804d11f5302ad79e4b96d"
+    },
+    "frontend-design": {
+      "source": "mager/frontend-design",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "12846ce07a406b8159e8b340a7f46ae15e8c0bc9e6dd278d923785de211d4e71"
+    },
+    "frontend-patterns": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-patterns/SKILL.md",
+      "computedHash": "4c2920da9aef340538f2d579f465fd99c5b679d4afa0daba775215c0e506d0b1"
+    },
+    "redesign-existing-projects": {
+      "source": "leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/redesign-skill/SKILL.md",
+      "computedHash": "47eced3e960a2c961d3cbee11fa1216264f589344b586a5cbd03967cd6b9c54b"
+    },
+    "claude-design": {
+      "source": "VoltAgent/awesome-design-md",
+      "sourceType": "github",
+      "skillPath": "design-md/claude/DESIGN.md"
+    }
+  }
+}
