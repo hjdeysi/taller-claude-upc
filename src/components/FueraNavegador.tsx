@@ -9,6 +9,7 @@ import {
   type ComponentType,
 } from "react";
 import { motion, useInView } from "motion/react";
+import Image from "next/image";
 import {
   Layers,
   Globe,
@@ -17,12 +18,16 @@ import {
   AlertCircle,
   ArrowRight,
 } from "lucide-react";
+import capasClaudeImg from "../../public/Capas-Claude.jpeg";
+import guiaClaudeImg from "../../public/Guia-Claude.jpeg";
 import {
   fadeUp,
   STAGGER,
   useMotionVariants,
 } from "@/lib/motion";
 import { PlanBadge } from "./PlanBadge";
+
+import type { StaticImageData } from "next/image";
 
 // ──────────────────────────────────────────────────────────────────────
 // Mini-TOC items
@@ -114,6 +119,64 @@ function SectionHeading({
         {title}
       </h3>
     </div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// ReferenceFigure — sober editorial frame around an external image.
+// Used to embed infografías that aren't part of the manual's own visual
+// system. Eyebrow + title + thin border + caption signal "this is a
+// referenced exhibit, not a designed component". Clicking opens the
+// raw image in a new tab — fulfills "puedes inspeccionarla más de
+// cerca" without a lightbox or modal.
+// ──────────────────────────────────────────────────────────────────────
+
+function ReferenceFigure({
+  src,
+  alt,
+  eyebrow,
+  title,
+  caption,
+}: {
+  src: StaticImageData;
+  alt: string;
+  eyebrow: string;
+  title: string;
+  caption: string;
+}) {
+  return (
+    <figure className="space-y-5">
+      <div className="space-y-2">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="block h-px w-8 bg-[var(--color-muted-soft)]" />
+          <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--color-muted)]">
+            {eyebrow}
+          </span>
+        </div>
+        <p className="font-display text-2xl leading-tight text-[var(--color-ink)] md:text-[28px]">
+          {title}
+        </p>
+      </div>
+
+      <a
+        href={src.src}
+        target="_blank"
+        rel="noopener"
+        aria-label={`${title} — abrir en tamaño completo`}
+        className="block cursor-zoom-in overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-muted)]/40 bg-[var(--color-canvas)] p-3 transition-transform duration-300 hover:scale-[1.01] md:p-4"
+      >
+        <Image
+          src={src}
+          alt={alt}
+          className="h-auto w-full object-contain"
+          sizes="(min-width: 1024px) 720px, 100vw"
+        />
+      </a>
+
+      <figcaption className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-muted)]">
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -522,6 +585,17 @@ export function FueraNavegador() {
           </p>
         </Block>
 
+        {/* Referencia visual — Las capas de Claude */}
+        <Block>
+          <ReferenceFigure
+            src={capasClaudeImg}
+            alt="Las capas de Claude — niveles de uso desde Chat hasta Código y Computadora"
+            eyebrow="Referencia visual"
+            title="Las capas de Claude"
+            caption="Infografía — referencia para el resto del bloque"
+          />
+        </Block>
+
         {/* El mapa de las cuatro */}
         <Block id="fdn-mapa" className="space-y-8">
           <SectionHeading
@@ -787,6 +861,14 @@ export function FueraNavegador() {
             bajas desde el Microsoft Marketplace buscando "Claude by Anthropic
             for Excel".
           </Callout>
+
+          <ReferenceFigure
+            src={guiaClaudeImg}
+            alt="Guía maestra de Claude para Excel — instalación en 5 pasos y casos de uso por industria"
+            eyebrow="Referencia visual"
+            title="Guía maestra: Claude en Excel"
+            caption="Infografía — instalación y casos de uso por industria"
+          />
 
           <ToolPlanFooter plan="pro">
             Cualquier plan pagado. Para uso diario en finanzas o consultoría,

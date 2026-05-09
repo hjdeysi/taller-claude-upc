@@ -26,6 +26,7 @@ const TOC_ITEMS: { id: string; label: string }[] = [
   { id: "c-plan", label: "Qué plan elegir" },
   { id: "c-semana", label: "Esta semana" },
   { id: "c-profundizar", label: "Para profundizar" },
+  { id: "c-setup", label: "Setup técnico" },
   { id: "c-cierre", label: "Una última cosa" },
 ];
 
@@ -274,11 +275,13 @@ function WeekList() {
 // "Para profundizar" — three curated resources
 // ──────────────────────────────────────────────────────────────────────
 
-const RESOURCES: {
+interface LinkItem {
   title: string;
   body: ReactNode;
   link?: { url: string; label: string };
-}[] = [
+}
+
+const RESOURCES: LinkItem[] = [
   {
     title: "Documentación oficial de Claude",
     link: { url: "https://claude.com/docs", label: "claude.com/docs" },
@@ -302,7 +305,38 @@ const RESOURCES: {
   },
 ];
 
-function ResourcesList() {
+const SETUP_LINKS: LinkItem[] = [
+  {
+    title: "Claude Desktop",
+    link: { url: "https://claude.com/download", label: "claude.com/download" },
+    body: "La app de escritorio oficial de Claude. Necesaria para Cowork y para acceso completo a integraciones locales.",
+  },
+  {
+    title: "Visual Studio Code",
+    link: {
+      url: "https://code.visualstudio.com/",
+      label: "code.visualstudio.com",
+    },
+    body: "Editor de texto gratuito de Microsoft. Es el entorno donde la mayoría de gente usa Claude Code. Si no tienes editor instalado, este es el camino más estándar.",
+  },
+  {
+    title: "Git",
+    link: { url: "https://git-scm.com/install/", label: "git-scm.com/install" },
+    body: "El sistema de control de versiones que Claude Code asume instalado para gestionar cambios en archivos. Si vas a usar Claude Code, instálalo antes.",
+  },
+  {
+    title: "GitHub",
+    link: { url: "https://github.com/", label: "github.com" },
+    body: "La plataforma donde viven los repositorios de Skills y plantillas que vas a poder bajar e instalar. Crea una cuenta gratis para clonar y subir tus propios proyectos.",
+  },
+  {
+    title: "Google Antigravity",
+    link: { url: "https://antigravity.google/", label: "antigravity.google" },
+    body: "Alternativa a VS Code, un IDE con IA nativa lanzado por Google. Útil si quieres comparar entornos de desarrollo asistido por IA. Funciona bien junto a Claude Code.",
+  },
+];
+
+function ResourcesList({ items }: { items: LinkItem[] }) {
   const ref = useRef<HTMLUListElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.05 });
   const variants = useMotionVariants(fadeUp);
@@ -320,7 +354,7 @@ function ResourcesList() {
       }}
       className="divide-y divide-[var(--color-hairline)] border-y border-[var(--color-hairline)]"
     >
-      {RESOURCES.map((r) => (
+      {items.map((r) => (
         <motion.li key={r.title} variants={variants} className="py-6">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-base font-semibold text-[var(--color-ink)] md:text-lg">
@@ -537,7 +571,27 @@ export function Cierre() {
         {/* Para profundizar */}
         <Block id="c-profundizar" className="space-y-6">
           <SectionHeading eyebrow="Sección" title="Para profundizar" />
-          <ResourcesList />
+          <ResourcesList items={RESOURCES} />
+        </Block>
+
+        {/* Enlaces para el setup */}
+        <Block id="c-setup" className="space-y-6">
+          <SectionHeading eyebrow="Sección" title="Enlaces para el setup" />
+          <p className="text-base leading-relaxed text-[var(--color-body)] md:text-lg">
+            Cinco herramientas que vas a necesitar si decides ir a la capa
+            más avanzada del ecosistema — especialmente Claude Code y la
+            integración con tu sistema de archivos. Ninguna es obligatoria
+            para el resto del manual. Léelas como un setup técnico a tu ritmo.
+          </p>
+          <ResourcesList items={SETUP_LINKS} />
+          <p className="text-base leading-relaxed text-[var(--color-body)] md:text-lg">
+            Si nunca has usado terminal ni Git y te sientes intimidado, es
+            normal. La mayoría de personas que terminan usando Claude Code
+            empiezan así. Hay tutoriales de quince minutos para cada uno de
+            estos enlaces. Lo más rentable que puedes hacer si te interesa
+            este camino es invertir una tarde en instalar los cinco y tener
+            todo listo, aunque no lo uses esa misma tarde.
+          </p>
         </Block>
 
         {/* Una última cosa — closing */}
