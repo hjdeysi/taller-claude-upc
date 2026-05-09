@@ -19,12 +19,7 @@ export default function Page() {
             title={s.title}
             time={s.time}
             plan={s.plan}
-          >
-            <p className="text-base leading-relaxed text-[var(--color-muted)]">
-              Bloque {s.number.toString().padStart(2, "0")} · {s.title} — contenido
-              pendiente.
-            </p>
-          </Section>
+          />
         ))}
       </main>
 

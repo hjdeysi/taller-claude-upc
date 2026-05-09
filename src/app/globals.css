@@ -125,3 +125,91 @@ h1, h2, h3 {
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Ambient atmosphere
+ *
+ * These keyframes drive the breathing tone of the page and the slow
+ * rotation of the spike-mark in the footer. Both are gated to >5px
+ * displacement, well within the perception threshold for "alive but
+ * not noisy". Any element that uses these classes is automatically
+ * paused under prefers-reduced-motion thanks to the global override
+ * above.
+ * ────────────────────────────────────────────────────────────────────── */
+
+@keyframes ambient-breath {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(2%, -1.5%, 0) scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+@keyframes ambient-breath-counter {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(-2%, 1.5%, 0) scale(1.04);
+    opacity: 0.6;
+  }
+}
+
+@keyframes slow-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ambient-breath {
+  animation: ambient-breath 14s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.ambient-breath-counter {
+  animation: ambient-breath-counter 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.slow-spin {
+  animation: slow-spin 90s linear infinite;
+  will-change: transform;
+}
+
+/* Paper grain — SVG turbulence baked into a data URL.
+ * Used on cream institutional bands to add tactile texture without
+ * a perceivable pattern. mix-blend-mode: multiply lets the grain
+ * darken cream surfaces into themselves rather than overlay. */
+.paper-grain {
+  position: relative;
+  isolation: isolate;
+}
+.paper-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  background-size: 240px 240px;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.paper-grain > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Skeleton bars: static cream gradient, no shimmer.
+ * Communicates structure without faking content. */
+.skeleton-bar {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-card) 0%,
+    var(--color-surface-soft) 100%
+  );
+  border-radius: var(--radius-sm);
+  height: 0.85rem;
+}

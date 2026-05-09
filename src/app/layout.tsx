@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import { AmbientBackground } from "@/components/AmbientBackground";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -34,7 +36,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${cormorant.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-[100dvh] antialiased">{children}</body>
+      <body className="relative min-h-[100dvh] antialiased">
+        <AmbientBackground />
+        <ScrollProgress />
+        {children}
+      </body>
     </html>
   );
 }

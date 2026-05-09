@@ -2,8 +2,15 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { motion } from "motion/react";
-import { SECTIONS } from "@/lib/sections";
+import { SECTIONS, type Plan } from "@/lib/sections";
 import { transitionLayout } from "@/lib/motion";
+
+const PLAN_DOT: Record<Plan, string> = {
+  free: "var(--color-plan-free)",
+  pro: "var(--color-plan-pro)",
+  max: "var(--color-plan-max)",
+  all: "var(--color-hairline)",
+};
 
 export function TabNav() {
   const [activeId, setActiveId] = useState<string>(SECTIONS[0].id);
@@ -12,9 +19,9 @@ export function TabNav() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Negative rootMargin biases activation to the top third of the viewport,
-    // so the active tab follows what the reader is reading, not what's barely
-    // peeking at the bottom edge.
+    // Negative rootMargin biases activation to the top third of the
+    // viewport, so the active tab follows what the reader is reading,
+    // not what's barely peeking at the bottom edge.
     observerRef.current = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -63,13 +70,30 @@ export function TabNav() {
                 <a
                   href={`#${s.id}`}
                   onClick={(e) => handleClick(e, s.id)}
-                  className="group relative flex items-center gap-2 rounded-md px-3 py-2 text-[13px] font-medium leading-tight transition-colors duration-200 hover:text-[var(--color-ink)]"
+                  className="group relative flex items-center gap-2 rounded-md px-3 py-2 text-[13px] font-medium leading-tight transition-all duration-300 hover:-translate-y-[1px] hover:bg-[var(--color-surface-soft)] hover:text-[var(--color-ink)]"
                   style={{
                     color: isActive ? "var(--color-ink)" : "var(--color-muted)",
                   }}
                   aria-current={isActive ? "true" : undefined}
                 >
-                  <span className="tabular-nums text-[11px] tracking-[0.1em] text-[var(--color-muted-soft)]">
+                  {/* Plan dot — barely-there indicator of plan tier. */}
+                  <span
+                    aria-hidden
+                    className="block h-1 w-1 rounded-full transition-all duration-300 group-hover:scale-125"
+                    style={{
+                      backgroundColor: PLAN_DOT[s.plan],
+                      opacity: isActive ? 1 : 0.55,
+                    }}
+                  />
+                  {/* Numeral in mono — distinct from the label. */}
+                  <span
+                    className="font-mono tabular-nums text-[10px] tracking-[0.08em] transition-colors duration-300"
+                    style={{
+                      color: isActive
+                        ? "var(--color-primary)"
+                        : "var(--color-muted-soft)",
+                    }}
+                  >
                     {s.number.toString().padStart(2, "0")}
                   </span>
                   <span>{s.shortTitle}</span>

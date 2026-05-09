@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="mt-24">
       {/* UPC institutional band — the only place the institutional red appears */}
-      <div className="bg-[var(--color-surface-cream-strong)]">
+      <div className="paper-grain bg-[var(--color-surface-cream-strong)]">
         <div className="mx-auto flex max-w-[1200px] items-center gap-5 px-6 py-14 md:px-10 md:py-16">
           <span
             aria-hidden
@@ -36,7 +36,7 @@ export function Footer() {
           <div className="flex items-center gap-3">
             <span
               aria-hidden
-              className="font-display text-xl text-[var(--color-on-dark)]"
+              className="slow-spin font-display text-xl text-[var(--color-on-dark)]"
             >
               ✳
             </span>
