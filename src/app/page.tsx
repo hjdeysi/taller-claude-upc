@@ -10,6 +10,7 @@ import { Skills } from "@/components/Skills";
 import { Demos } from "@/components/Demos";
 import { FueraNavegador } from "@/components/FueraNavegador";
 import { TuTurno } from "@/components/TuTurno";
+import { Cierre } from "@/components/Cierre";
 import { SECTIONS } from "@/lib/sections";
 
 // Map section id → content component. Sections without a mapping
@@ -22,6 +23,7 @@ const CONTENT_BLOCKS: Record<string, ComponentType> = {
   demos: Demos,
   "fuera-del-navegador": FueraNavegador,
   "tu-turno": TuTurno,
+  cierre: Cierre,
 };
 
 export default function Page() {
