@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { TabNav } from "@/components/TabNav";
 import { Section } from "@/components/Section";
 import { Footer } from "@/components/Footer";
+import { Bienvenida } from "@/components/Bienvenida";
 import { SECTIONS } from "@/lib/sections";
 
 export default function Page() {
@@ -19,7 +20,9 @@ export default function Page() {
             title={s.title}
             time={s.time}
             plan={s.plan}
-          />
+          >
+            {s.id === "bienvenida" ? <Bienvenida /> : undefined}
+          </Section>
         ))}
       </main>
 

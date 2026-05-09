@@ -213,3 +213,66 @@ h1, h2, h3 {
   border-radius: var(--radius-sm);
   height: 0.85rem;
 }
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Editorial typography utilities
+ * ────────────────────────────────────────────────────────────────────── */
+
+/* Drop cap — applied to the first paragraph of a body lead.
+ * Cormorant initial, ~4 lines tall, hangs into the left margin. */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  float: left;
+  font-size: 4.5em;
+  line-height: 0.85;
+  margin: 0.04em 0.1em -0.08em 0;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
+}
+
+/* Pull quote — magazine-style oversized opening curly quote in coral,
+ * Cormorant body at display weight. */
+.pull-quote {
+  position: relative;
+  margin: 0;
+  padding: 0.5rem 0 0.5rem 3.25rem;
+}
+.pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -1.6rem;
+  left: -0.25rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--color-body-strong);
+}
+
+/* Callout — coral side-rule + soft tonal background.
+ * NOT a coral full-bleed (that's reserved for callout-card-coral).
+ * Use for asides that need to read as separate from the main flow
+ * but still tonally aligned with the cream canvas. */
+.callout-aside {
+  position: relative;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface-soft);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: 1.5rem 1.75rem;
+}
+@media (min-width: 768px) {
+  .callout-aside {
+    padding: 2rem 2.25rem;
+  }
+}

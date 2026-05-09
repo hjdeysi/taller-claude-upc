@@ -35,7 +35,7 @@ export function BackgroundNumeral({ number, position = "right" }: BackgroundNume
     <span
       ref={ref}
       aria-hidden
-      className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none font-display leading-none text-[var(--color-ink)] ${positionClass}`}
+      className={`pointer-events-none absolute top-12 select-none font-display leading-none text-[var(--color-ink)] md:top-20 ${positionClass}`}
       style={{
         fontSize: "clamp(14rem, 32vw, 28rem)",
         fontWeight: 400,
