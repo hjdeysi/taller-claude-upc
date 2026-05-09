@@ -150,9 +150,8 @@ export function Bienvenida() {
         <Block id="bienvenida-hook">
           <blockquote className="pull-quote">
             <p>
-              Pides una calculadora de margen para tu negocio. ¿Te gustaría que
-              tu IA te explique cómo construirla en Excel, o prefieres que te
-              entregue la calculadora ya hecha y funcionando?
+              Cuando le pides ayuda a una IA, ¿qué prefieres: una respuesta o
+              un trabajo terminado?
             </p>
           </blockquote>
         </Block>
@@ -172,8 +171,8 @@ export function Bienvenida() {
           <SectionHeading eyebrow="Sección" title="Para qué es este taller" />
           <p className="text-base leading-relaxed text-[var(--color-body)] md:text-lg">
             Tres horas. Diseñado para alumnos de carreras de negocios —
-            marketing, finanzas, administración, negocios internacionales,
-            hospitalidad. Cero requisitos técnicos. La meta no es convertirte en
+            marketing, finanzas, administración, negocios internacionales.
+            Cero requisitos técnicos. La meta no es convertirte en
             programador. La meta es que entiendas qué problemas reales de tu
             carrera puede resolver una herramienta como Claude, y hasta dónde
             puedes llegar con la cuenta gratis antes de que pagar valga la pena.
