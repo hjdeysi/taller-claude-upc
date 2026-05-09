@@ -21,7 +21,7 @@ interface BackgroundNumeralProps {
  */
 export function BackgroundNumeral({ number, position = "right" }: BackgroundNumeralProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
   const reduce = useReducedMotion();
 
   const label = number.toString().padStart(2, "0");

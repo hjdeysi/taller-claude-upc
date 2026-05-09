@@ -24,7 +24,11 @@ interface SectionProps {
 
 export function Section({ id, number, title, subtitle, plan, time, children }: SectionProps) {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.18 });
+  // amount must stay below max-visible ratio for a section that's
+  // taller than the viewport — otherwise the observer never fires
+  // and the children stay at opacity 0. 0.05 is robust up to ~20x
+  // viewport heights.
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   const variants = useMotionVariants(fadeUp);
 

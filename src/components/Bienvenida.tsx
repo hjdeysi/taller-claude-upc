@@ -40,7 +40,8 @@ const PLAN_DOT: Record<Plan, string> = {
 
 function Block({ id, children, className = "" }: { id?: string; children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
+  // Low threshold so blocks taller than the viewport still reveal.
+  const inView = useInView(ref, { once: true, amount: 0.05 });
   const variants = useMotionVariants(fadeUp);
 
   return (
@@ -361,7 +362,7 @@ function StructureList({
   onClick: (e: MouseEvent<HTMLAnchorElement>, id: string) => void;
 }) {
   const ref = useRef<HTMLUListElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.15 });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
     <motion.ul
